@@ -10,20 +10,27 @@ yt = YouTube(
 video = yt.streams.filter(only_audio=True).first()
 
 # check for destination to save file
-print("Enter the destination (leave blank for current directory)")
-#destination = str(input(">> ")) or '.'
-destination = "/Users/leonurny/Music/Spotify_Music/"
+flag = True
+while(flag):
+    type = input("\nPress \"1\" for spotify download\nPress \"2\" to save in current directory\n>>")
+    if(type == "1"):
+         destination = "/Users/leonurny/Music/Spotify_Music/"
+         flag = False
+    elif(type == "2"):
+        destination = "/Users/leonurny/Documents/Programmieren/Youtube_Downloader/"
+        flag = False
+    
 # download the file
 out_file = video.download(output_path=destination)
 
 # save the file
 base, ext = os.path.splitext(out_file)
-print("current filename" + base)
-name = input("Enter file name: ")
-new_file = base + '.mp3'
+print("\ncurrent filename: " + base)
+name = input("\nEnter file name:\n>>")
+#new_file = name + '.mp3'
+new_file = os.path.join(destination, name + '.mp3')
+
 os.rename(out_file, new_file)
 
 # result of success
-print(yt.title + " has been successfully downloaded.")
-
-#/Users/leonurny/Music/Spotify_Music/
+print("\n---------------------------\nDownload successful\n--------------------------")
