@@ -1,6 +1,7 @@
 # importing packages
 from pytube import YouTube
 import os
+from moviepy.editor import *
 
 # url input from user
 yt = YouTube(
@@ -27,8 +28,8 @@ out_file = video.download(output_path=destination)
 base, ext = os.path.splitext(out_file)
 print("\ncurrent filename: " + base)
 name = input("\nEnter file name:\n>>")
-#new_file = name + '.mp3'
-new_file = os.path.join(destination, name + '.mp3')
+new_file = os.path.join(destination, name + '.mp4')
+
 
 os.rename(out_file, new_file)
 
